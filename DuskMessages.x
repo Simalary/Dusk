@@ -19,8 +19,6 @@
 static CKUIThemeDark *darkTheme;
 static NSString *bundleID;
 
-static BOOL isDark;
-
 static void handleQuitMessages(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
 	DebugLogC(@"*** Notice: %@", name);
 	
