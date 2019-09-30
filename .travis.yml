@@ -1,0 +1,29 @@
+os: osx
+language: objective-c
+osx_image: xcode10.1
+sudo: false
+env:
+  global:
+  - THEOS=~/theos
+  - secure: AfDP9W1eLC90lGZekGAHN+q+7vZZ/dKrz0JDs3Lj/ONA4RJH/idFCirMiAJFKij/u+OjtNYDSs3ShKCrpXqgDmw3oEZO66SXsn06mJs5YAPWG2ZqRHCQGP6t9OrD7GlO405jYfAvNNGyQysLOLSeNDkPKN0Cp+EI+GnfpRhhJiX4Wn4ccQY9ooO22Ma7FsWlxL3tkQjY9qEc7WaPzJ86HejGVmS0Bldi/Ir8THBHxtQGsyQPWawdIOgiRfwJ8dJY7n5flpPBpGKb8yq3912zRdBZEhGaW1q1c3hw0LewZnsYq9WJdrYszO3zaidzbQJ16SdLaX9ezUO/qvmUHnwEC62xEibmKhkcSKHZ2WVYsFar5AzZ3NaVtbu2CW2dHcdi8XDP8AR3dr4gTSBQOSTyitSqJj9xkCicNadMDz1ly9uR2zHkcRH8VqaktF8Aj5nKTFWrOhVm4bbq+PyLRRRDIkMfkowxebEx8nU9Ysflp4mJ/q90Mx/Gd8L/D2MS5xWOHYjvUH14WaGa4cohaoTKT00ttctKazqGacgodYcrKOrEYAKGihosb+VsSCaLO6WedBeAaql1qqwV0TWf3WG9fniv8KrlEJxvMAq07zwvKE1FZmkSdg1dYaL8cZuup9b0/vESK0M86Hdq0Y32XZiMxQ6YK4tEAKhqicKNceOLU4U=
+before_install:
+- brew install dpkg ldid
+- git clone --recursive git://github.com/theos/theos.git ~/theos
+script:
+- make clean package FINALPACKAGE=1
+before_deploy:
+- git config --local user.name "simalary"
+- git config --local user.email "19harperc@gmail.com"
+- export RELEASE_PKG_FILE=$(ls ./packages/*.deb)
+- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+- git tag $TRAVIS_TAG
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: Xz/Cxbsl5cdWgQyMy70L7hBjuyATU+pEGCi0vizPdj1SM9eZqtyOGCDRNNttZWhwFew3SWVXkkgRJ6Xbu8gbwdJCYHNpA5T6DK84QN4SrZwER5PfE7X9u8cp0dxtZY/SltPtIG6e1hhsHzJAKExoVC/CV+9YgZHVv4wU3u5h34DctXaXOxKLgmlEw79NfGDtIuhs7UJxaUPH1U94JJADdzgWP+vbMh/3veZAMqa/mC24q3KgHuaosZW1Gzv5hsxwZVNAxNHzqZ2e3FoeqYFR+ZpEteKwEl+Q75RLjE61ha4ikJZE2BNIqI8AEVOR0Cx0FGFNh1RFRZZU8o11KXh57z6prfC1Em5RzU8Yq9XseeTw7Ap3USSkmAkRqAEI9PDiwl128qth8EkKFqGPLLqo+m9eAj95IW/9Kl1JIjxxFHJBSu0GrSL72Mb5M/pW/ovMZetDgTnDtdqcPShRdtZKzXh1jChPKCdgVhWOZII6xQgI/5lmZQLYqYT8D9nElkwCHXue/o+hUSBhkgyu3d7PxTe9l+KxWJlC7nhafQZKuSYdn19a2ELu77X7rH4oW/qH2ZgmmEG8Iy84yt5wsv6a8cuWZsm7YtDf9S4xLoqdYiF2wN+d/RBc52p1EqZyvF0awtiqBU04Gs7CUyXNtzNOT3VR1vWfTeRra5KdLkN94f8=
+  file: "${RELEASE_PKG_FILE}"
+  file_glob: true
+  on:
+    repo: Simalary/Dusk
+    branch: master
