@@ -20,24 +20,6 @@ static CKUIThemeDark *darkTheme;
 static NSString *bundleID;
 
 static BOOL isDark;
-static NSString *blueBalloonColor;
-static NSString *greenBalloonColor;
-static NSString *grayBalloonColor;
-
-
-static void loadSettings() {
-	DebugLogC(@"loading settings...");
-
-	NSDictionary *settings = [NSMutableDictionary dictionaryWithContentsOfFile:kPrefsPlistPath];
-	isDark = settings[@"Enabled"] ? [settings[@"Enabled"] boolValue] : YES;
-	DebugLogC(@">> DarkMode:%@", isDark?@"yes":@"no");
-	
-	blueBalloonColor = settings[@"BlueBalloonColor"] ?: @"default";
-	greenBalloonColor = settings[@"GreenBalloonColor"] ?: @"default";
-	grayBalloonColor = settings[@"GrayBalloonColor"] ?: @"default";
-	DebugLogC(@">> BlueBalloonColor=%@; GreenBalloonColor=%@, GrayBalloonColor=%@", blueBalloonColor, greenBalloonColor, grayBalloonColor);
-}
-
 
 static void handleQuitMessages(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
 	DebugLogC(@"*** Notice: %@", name);
@@ -168,55 +150,6 @@ static void handleQuitMessages(CFNotificationCenterRef center, void *observer, C
 		UILabel *label = %orig;
 		label.textColor = [darkTheme entryFieldDarkStyleButtonColor];
 		return label;
-	} else {
-		return %orig;
-	}
-}
-%end
-
-// change chat bubble colors
-%hook CKUIThemeDark
-- (id)blue_balloonColors {
-	if (isDark && blueBalloonColor && ![blueBalloonColor isEqualToString:@"default"]) {
-		return @[ [UIColor colorFromHexString:blueBalloonColor] ];
-	} else {
-		return %orig;
-	}
-}
-- (id)green_balloonColors {
-	if (isDark && greenBalloonColor && ![greenBalloonColor isEqualToString:@"default"]) {
-		return @[ [UIColor colorFromHexString:greenBalloonColor], [UIColor colorFromHexString:greenBalloonColor]];
-	} else {
-		return %orig;
-	}
-}
-- (id)gray_balloonColors {
-	if (isDark && grayBalloonColor && ![grayBalloonColor isEqualToString:@"default"]) {
-		return @[ [UIColor colorFromHexString:grayBalloonColor], [UIColor colorFromHexString:grayBalloonColor] ];
-	} else {
-		return %orig;
-	}
-}
-- (id)blue_balloonTextColor {
-	if (isDark && blueBalloonColor && ![blueBalloonColor isEqualToString:@"default"]) {
-		UIColor *balloonColor = [UIColor colorFromHexString:blueBalloonColor];
-		return ([balloonColor isLightColor]) ? UIColor.blackColor : UIColor.whiteColor;
-	} else {
-		return %orig;
-	}
-}
-- (id)green_balloonTextColor {
-	if (isDark && greenBalloonColor && ![greenBalloonColor isEqualToString:@"default"]) {
-		UIColor *balloonColor = [UIColor colorFromHexString:greenBalloonColor];
-		return ([balloonColor isLightColor]) ? UIColor.blackColor : UIColor.whiteColor;
-	} else {
-		return %orig;
-	}
-}
-- (id)gray_balloonTextColor {
-	if (isDark && grayBalloonColor && ![grayBalloonColor isEqualToString:@"default"]) {
-		UIColor *balloonColor = [UIColor colorFromHexString:grayBalloonColor];
-		return ([balloonColor isLightColor]) ? UIColor.blackColor : UIColor.whiteColor;
 	} else {
 		return %orig;
 	}
