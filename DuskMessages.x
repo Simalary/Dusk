@@ -138,4 +138,5 @@ static void handleQuitMessages(CFNotificationCenterRef center, void *observer, C
 		DebugLogC(@"loaded into process: %@", bundleID);		
 		darkTheme = [[%c(CKUIThemeDark) alloc] init];
 		%init;
+	}
 }
