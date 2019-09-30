@@ -72,107 +72,70 @@ static void handleQuitMessages(CFNotificationCenterRef center, void *observer, C
 
 %hook CKUIBehaviorPhone
 - (id)theme {
-	return isDark ? darkTheme : %orig;
+	return darkTheme;
 }
 %end
 
 %hook CKUIBehaviorPad
 - (id)theme {
-	return isDark ? darkTheme : %orig;
+	return darkTheme;
 }
 %end
 
 // fix navbar: style
 %hook CKAvatarNavigationBar
 - (void)_setBarStyle:(int)style {
-	if (isDark) {
-		%orig(1);
-	} else {
-		%orig;
-	}
+	%orig(1);
 }
 %end
 
 // fix navbar: contact names
 %hook CKAvatarContactNameCollectionReusableView
 - (void)setStyle:(int)style {
-	if (isDark) {
-		%orig(3);
-	} else {
-		%orig;
-	}
+	%orig(3);
 }
 %end
 
 // fix navbar: group names
 %hook CKAvatarTitleCollectionReusableView
 - (void)setStyle:(int)style {
-	if (isDark) {
-		%orig(3);
-	} else {
-		%orig;
-	}
+	%orig(3);
 }
 %end
 
 // fix navbar: new message label
 %hook CKNavigationBarCanvasView
 - (id)titleView {
-	if (isDark) {
-		id tv = %orig;
-		if (tv && [tv respondsToSelector:@selector(setTextColor:)]) {
-			[(UILabel *)tv setTextColor:UIColor.whiteColor];
-		}
-		return tv;
-	} else {
-		return %orig;
+	id tv = %orig;
+	if (tv && [tv respondsToSelector:@selector(setTextColor:)]) {
+		[(UILabel *)tv setTextColor:UIColor.whiteColor];
 	}
+	return tv;
 }
 %end
 
 // fix group details: contact names
 %hook CKDetailsContactsTableViewCell
 - (UILabel *)nameLabel {
-	if (isDark) {
-		UILabel *nl = %orig;
-		nl.textColor = UIColor.whiteColor;
-		return nl;
-	} else {
-		return %orig;
-	}
+	UILabel *nl = %orig;
+	nl.textColor = UIColor.whiteColor;
+	return nl;
 }
 %end
 
 // fix message entry inactive color
 %hook CKMessageEntryView
 - (UILabel *)collpasedPlaceholderLabel {
-	if (isDark) {
-		UILabel *label = %orig;
-		label.textColor = [darkTheme entryFieldDarkStyleButtonColor];
-		return label;
-	} else {
-		return %orig;
-	}
+	UILabel *label = %orig;
+	label.textColor = [darkTheme entryFieldDarkStyleButtonColor];
+	return label;
 }
 %end
 
 %ctor {
 	@autoreleasepool {
 		bundleID = NSBundle.mainBundle.bundleIdentifier;
-		DebugLogC(@"loaded into process: %@", bundleID);
-		
-		loadSettings();
-		
+		DebugLogC(@"loaded into process: %@", bundleID);		
 		darkTheme = [[%c(CKUIThemeDark) alloc] init];
 		%init;
-		
-		// listen for requests from SpringBoard to prompt user to restart Messages
-		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
-			NULL,
-			(CFNotificationCallback)handleQuitMessages,
-			kQuitMessagesNotification,
-			NULL,
-			CFNotificationSuspensionBehaviorDeliverImmediately
-		);
-	}
 }
