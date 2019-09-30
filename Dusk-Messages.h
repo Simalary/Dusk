@@ -5,9 +5,9 @@
 //  ©2017 Sticktron
 //
 
-// #define kSettingsChangedNotification		CFSTR("com.sticktron.darkmessages.settings-changed")
-// #define kQuitMessagesNotification 			CFSTR("com.sticktron.darkmessages.please-quit-messages")
-// #define kRelaunchMessagesNotification 		CFSTR("com.sticktron.darkmessages.please-relaunch-messages")
+#define kSettingsChangedNotification		CFSTR("com.sticktron.darkmessages.settings-changed")
+#define kQuitMessagesNotification 			CFSTR("com.sticktron.darkmessages.please-quit-messages")
+#define kRelaunchMessagesNotification 		CFSTR("com.sticktron.darkmessages.please-relaunch-messages")
 
 
 // Private APIs

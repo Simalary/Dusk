@@ -1,6 +1,6 @@
 #import <UIKit/UIColor.h>
 
-@interface UIColor (DuskMessages)
+@interface UIColor (DM)
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 - (UIImage *)thumbnailWithSize:(CGSize)size;
 - (BOOL)isLightColor;
