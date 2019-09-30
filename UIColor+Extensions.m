@@ -1,4 +1,4 @@
-#import "UIColor-Additions.h"
+#import "UIColor+Extensions.h"
 
 @implementation UIColor (DM)
 + (UIColor *)colorFromHexString:(NSString *)hexString {
