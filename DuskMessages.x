@@ -12,7 +12,7 @@
 
 
 #import "Dusk-Messages.h"
-#import "UIColor-Additions.h"
+#import "UIColor+Extensions.h"
 #import <Foundation/NSDistributedNotificationCenter.h>
 
 
