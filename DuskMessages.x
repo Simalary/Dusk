@@ -99,13 +99,13 @@ static NSString *bundleID;
 }
 %end
 
-@interface CNContactGroupPickertViewController : UITableView
+@interface CNContactGroupPickerViewController : UIViewController
 @end
 
-%hook CNContactGroupPickertViewController
+%hook CNContactGroupPickerViewController
 -(void)viewDidLoad{
 	%orig;
-	self.tableView.backgroundView.backgroundColor = [UIColor blackColor];
+	self.view.backgroundColor = [UIColor blackColor];
 }
 %end
 
