@@ -138,6 +138,10 @@ static NSString *bundleID;
 	if ([self valueForKey:@"_avatarView"]) {
 		UIView *avatarView = (UIView *)[self valueForKey:@"_avatarView"];
 		avatarView.backgroundColor = [UIColor clearColor];
+		if ([self valueForKey:@"_avatarView"]) {
+			UIImageView *imageView = (UIImageView *)[self valueForKey:@"_imageView"];
+			imageView.backgroundColor = [UIColor clearColor];
+		}
 	}
 }
 %end
