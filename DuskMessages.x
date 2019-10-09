@@ -114,8 +114,12 @@ static NSString *bundleID;
 @end
 
 %hook CKConversationListStandardCell
--(void)setSelectionStyle:(long long)arg1{
-	%orig(1);
+-(void)layoutSubviews{
+	%orig;
+	if ([self valueForKey:@"_contentView"]) {
+		UIView *contentView = (UIView *)[self valueForKey:@"_contentView"];
+		contentView.backgroundColor = [UIColor clearColor];
+	}
 }
 %end
 
