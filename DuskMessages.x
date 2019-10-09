@@ -81,6 +81,13 @@ static NSString *bundleID;
 }
 %end
 
+// fix plugin bar
+%hook CKBrowserSwitcherFooterView
+-(void)setBackgroundColor:(id)arg1{
+	%orig([UIColor blackColor]);
+}
+%end
+
 %ctor {
 	@autoreleasepool {
 		bundleID = NSBundle.mainBundle.bundleIdentifier;
