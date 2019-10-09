@@ -108,6 +108,17 @@ static NSString *bundleID;
 }
 %end
 
+//fix conversation edit color
+
+@interface CKConversationListStandardCell : UITableViewCell
+@end
+
+%hook CKConversationListStandardCell
+-(void)setSelectionStyle:(long long)arg1{
+	%orig(1);
+}
+%end
+
 %ctor {
 	@autoreleasepool {
 		bundleID = NSBundle.mainBundle.bundleIdentifier;
