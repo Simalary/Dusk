@@ -88,6 +88,9 @@ static NSString *bundleID;
 }
 %end
 
+@interface CNContactViewController : UIViewController
+@end
+
 // fix contact background
 %hook CNContactViewController
 -(void)viewDidLoad{
