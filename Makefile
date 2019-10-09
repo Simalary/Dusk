@@ -7,6 +7,6 @@ TWEAK_NAME = DuskMessages
 DuskMessages_FILES = DuskMessages.x  UIColor+Extensions.m
 DuskMessages_CFLAGS = -fobjc-arc
 
-ARCHS = arm64
+ARCHS = arm64 arm64e
 
 include $(THEOS_MAKE_PATH)/tweak.mk
