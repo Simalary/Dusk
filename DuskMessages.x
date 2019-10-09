@@ -118,6 +118,7 @@ static NSString *bundleID;
 	if ([self valueForKey:@"_tableView"]) {
 		UIView *tableView = (UIView *)[self valueForKey:@"_tableView"];
 		tableView.backgroundColor = [UIColor blackColor];
+	}
 }
 %end
 
