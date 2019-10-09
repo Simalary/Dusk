@@ -104,7 +104,7 @@ static NSString *bundleID;
 
 %hook CNContactGroupPickerViewController
 -(void)setBackgroundColor:(id)arg1{
-	arg1 = [UIColor blackColor];
+	%orig([UIColor blackColor]);
 }
 %end
 
