@@ -21,7 +21,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: d9ff8737539dfd725a83c556dd93d95f430cf8dc
+    secure: bWv4EA3ol6eVbi/aLR1l6r3KNGq6wyXugjTO2UHthzCzi/2Z/VgJ954QYfMyNQ7g4TvPrEldx9ZwS1WXwe8vmXa0os6+kk9dOTEH1LMxa/YQfRjGkcKnWCHg0htCoxSGIZnLFrbsX/W8eelJ8xB+DljXAyPYR/Gu3as8Uvrg6mOvV+M88qXLw6BED2xtHdj3uwsXwQN8Ye30fT0Ig5pDjZAKtRyIl1hgF35WhtpwNopNQr/SzGzBpbOMtc3ULaCb4KtihCbqa3/DAW863HxaecUU/qQcdkIDHwhzpOTNLgnmqj6h+u5AuZlde6sRbOFFdzBGZl2iwa8kPCfZg9oYYT94uLeD7gYFD7qabpMWmDrnvWLtvrs8vp0aejy+zrqM64aGxmtpzk+nBAIkb3wpr3mt1bkheGlB2pa57u0wzeDxjFI67z+W6pp/EslRUSjAG7eWutRDz+46GVBw5rgeKvYjiLkgULvWU/O1ZpwJOVyaXXQal2cGic985f65cRhRdqJNKa5LxVAOS5ILP+IFJ56rEHSXKPrzoUwMgVMay+ZKaCT6YWPLraUBvfUtHkDw410GQE+kDO/2014A0774ZnlR2KYF1KM3enK/Kq0aV7b0pqFc1enZujQ0UtbWOCWYMGJcJxpOWLzYg729vtLlt+DVVr2cv4oVKdriCVf7YQw=
   file: "${RELEASE_PKG_FILE}"
   file_glob: true
   on:
