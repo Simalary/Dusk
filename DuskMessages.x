@@ -88,10 +88,10 @@ static NSString *bundleID;
 }
 %end
 
+// fix contact background
 @interface CNContactViewController : UIViewController
 @end
 
-// fix contact background
 %hook CNContactViewController
 -(void)viewDidLoad{
 	%orig;
@@ -99,6 +99,15 @@ static NSString *bundleID;
 }
 %end
 
+@interface CNContacGroupPickertViewController : UIViewController
+@end
+
+%hook CNContacGroupPickertViewController
+-(void)viewDidLoad{
+	%orig;
+	self.view.backgroundColor = [UIColor blackColor];
+}
+%end
 
 %ctor {
 	@autoreleasepool {
