@@ -88,6 +88,15 @@ static NSString *bundleID;
 }
 %end
 
+// fix contact background
+%hook CNContactViewController
+-(void)viewDidLoad{
+	%orig;
+	self.view.backgroundColor = [UIColor blackColor];
+}
+%end
+
+
 %ctor {
 	@autoreleasepool {
 		bundleID = NSBundle.mainBundle.bundleIdentifier;
