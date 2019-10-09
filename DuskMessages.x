@@ -115,6 +115,7 @@ static NSString *bundleID;
 %hook CNContactGroupPickerViewController
 -(void)viewDidLoad{
 	%orig;
+	//self.view.backgroundColor = [UIColor blackColor];
 	self.view.backgroundColor = [UIColor blackColor];
 	if ([self valueForKey:@"_tableView"]) {
 		UITableView *tableView = (UITableView *)[self valueForKey:@"_tableView"];
