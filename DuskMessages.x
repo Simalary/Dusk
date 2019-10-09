@@ -99,13 +99,12 @@ static NSString *bundleID;
 }
 %end
 
-@interface CNContactContentViewController : UIViewController
+@interface CNContactContentViewController : UIView
 @end
 
 %hook CNContactContentViewController
--(void)viewDidLoad{
-	%orig;
-	self.view.backgroundColor = [UIColor blackColor];
+-(void)setBackgroundColor:(id)arg1{
+	%orig([UIColor blackColor]);
 }
 %end
 
