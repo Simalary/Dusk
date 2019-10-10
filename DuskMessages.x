@@ -106,6 +106,7 @@ static NSString *bundleID;
 -(void)setBackgroundColor:(UIColor *)arg1{
 	%orig([UIColor blackColor]);
 }
+%end
 
 @interface CNContactContentViewController : UIViewController
 @end
@@ -152,6 +153,40 @@ static NSString *bundleID;
 			imageView.backgroundColor = [UIColor clearColor];
 		}
 	}
+}
+%end
+
+// add credits
+
+%hook CKConversationListController
+-(void)setEditing:(BOOL)arg1 animated:(BOOL)arg2 {
+	%orig;
+	if(arg1) {
+		UIBarButtonItem* duskButton = [[UIBarButtonItem alloc] initWithTitle:@"Dusk" style:UIBarButtonItemStylePlain target:self action:@selector(duskButtonClicked:)];
+		self.navigationItem.rightBarButtonItem = duskButton;
+	} else {
+		UIBarButtonItem* composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeButtonClicked:)];
+		self.navigationItem.rightBarButtonItem = composeButton;
+	}
+}
+
+%new
+-(void)duskButtonClicked:(id)sender{
+	UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Dusk"
+                                 message:@"Dusk (Messages) provides a dark mode for Messages. This is a beta release.\n\n© Simalary (Chris) 2019"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* dismissButton = [UIAlertAction
+                               actionWithTitle:@"Dismiss"
+                               style:UIAlertActionStyleCancel
+                               handler:^(UIAlertAction * action) {
+
+                               }];
+
+    [alert addAction:dismissButton];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 %end
 
