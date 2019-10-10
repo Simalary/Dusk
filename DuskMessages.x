@@ -158,6 +158,9 @@ static NSString *bundleID;
 
 // add credits
 
+@interface CKConversationListController : UIViewController
+@end
+
 %hook CKConversationListController
 -(void)setEditing:(BOOL)arg1 animated:(BOOL)arg2 {
 	%orig;
