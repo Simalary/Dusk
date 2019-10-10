@@ -22,8 +22,7 @@
 		UIBarButtonItem* duskButton = [[UIBarButtonItem alloc] initWithTitle:@"Dusk" style:UIBarButtonItemStylePlain target:self action:@selector(duskButtonClicked:)];
 		self.navigationItem.leftBarButtonItem = duskButton;
 	} else {
-		self.navigationItem.leftBarButtonItem = nil;
-		%orig(arg1,arg2);
+		%orig;
 	}
 }
 
