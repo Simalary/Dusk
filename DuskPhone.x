@@ -50,7 +50,6 @@
 %ctor {
 	@autoreleasepool {
 		if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:@"com.apple.mobilephone"]){
-			darkTheme = [[%c(CKUIThemeDark) alloc] init];
 			%init;
 		}	
 	}
