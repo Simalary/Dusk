@@ -2,10 +2,10 @@ INSTALL_TARGET_PROCESSES = SpringBoard
 
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = DuskMessages
+TWEAK_NAME = Dusk
 
-DuskMessages_FILES = DuskMessages.x  UIColor+Extensions.m
-DuskMessages_CFLAGS = -fobjc-arc
+Dusk_FILES = DuskMessages.x  DuskPhone.x UIColor+Extensions.m
+Dusk_CFLAGS = -fobjc-arc
 
 ARCHS = arm64 arm64e
 

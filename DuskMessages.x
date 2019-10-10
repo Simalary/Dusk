@@ -1,10 +1,10 @@
 //
-//  DarkMessages_CK.xm
-//  DarkMessages
+//  Dusk
+//  Dusk (Messages)
 //
-//  Dark theme for the Messages app in iOS 10.
+//  Dark theme for the Messages app in iOS 12+.
 //
-//  ©2017 Sticktron
+//  ©2019 Simalary (Chris)
 //
 
 #define DEBUG_PREFIX @"[DUSK MESSAGES]"
@@ -198,9 +198,9 @@ static NSString *bundleID;
 
 %ctor {
 	@autoreleasepool {
-		bundleID = NSBundle.mainBundle.bundleIdentifier;
-		DebugLogC(@"loaded into process: %@", bundleID);		
-		darkTheme = [[%c(CKUIThemeDark) alloc] init];
-		%init;
+		if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:@"com.apple.MobileSMS"]){
+			darkTheme = [[%c(CKUIThemeDark) alloc] init];
+			%init;
+		}	
 	}
 }
