@@ -114,7 +114,10 @@ static NSString *bundleID;
 %hook CNContactContentViewController
 -(void)viewDidLoad{
 	%orig;
-	self.view.backgroundColor = [UIColor blackColor];
+	if ([self valueForKey:@"_view"]) {
+		UIView *view = (UIView *)[self valueForKey:@"_view"];
+		view.backgroundColor = [UIColor blackColor];
+	}
 }
 %end
 
