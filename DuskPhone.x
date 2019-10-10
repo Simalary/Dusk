@@ -20,9 +20,9 @@
 	%orig;
 	if(!arg1) {
 		UIBarButtonItem* duskButton = [[UIBarButtonItem alloc] initWithTitle:@"Dusk" style:UIBarButtonItemStylePlain target:self action:@selector(duskButtonClicked:)];
-		self.navigationItem.rightLeftButtonItem = duskButton;
+		self.navigationItem.leftButtonItem = duskButton;
 	} else {
-		self.navigationItem.rightLeftButtonItem = nil;
+		self.navigationItem.leftButtonItem = nil;
 		%orig(arg1);
 	}
 }
