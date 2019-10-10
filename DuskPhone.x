@@ -23,7 +23,7 @@
 		self.navigationItem.leftBarButtonItem = duskButton;
 	} else {
 		self.navigationItem.leftBarButtonItem = nil;
-		%orig(arg1);
+		%orig(arg1,arg2);
 	}
 }
 
